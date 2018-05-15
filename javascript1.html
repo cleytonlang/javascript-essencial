@@ -1,0 +1,70 @@
+<html>
+
+<head>
+    <title>JS Arrays</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="alert alert-info">
+            Métodos de Arrays
+        </div>
+
+        <div class="bd-example">
+            <form class="form-signin" action="#">
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <input type="text" class="form-control" id="item" placeholder="Nome">
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary" id="btn-array">Adicionar</button>
+                <button type="button" class="btn btn-default" id="btn-limpar">Limpar lista</button>
+
+                <ul id="lista-item"></ul>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        "use strict";
+        //buscar campo de input e focar o cursor
+        var item = document.querySelector("input#item");
+        item.focus();
+
+        var btnCliente = document.querySelector("button#btn-array");
+        //acionar evento de click do botão
+        btnCliente.onclick = function(e) {
+            e.preventDefault();
+
+            if (item.value.trim() != '') {
+                //criando um elemento li
+                var li = document.createElement("li");
+                //adicionando o texto digitado no input ao elemento li
+                var textli = document.createTextNode(item.value);
+                li.appendChild(textli);
+
+                var ul = document.querySelector("#lista-item");
+                //adicionando o elemento li no elemento ul
+                ul.appendChild(li);
+
+                item.value = '';
+                item.focus();
+            } else {
+                item.focus();
+            }
+        }
+
+        var btnLimpar = document.querySelector("#btn-limpar");
+        btnLimpar.onclick = function() {
+            var li = document.querySelectorAll("li");
+            Array.prototype.forEach.call(li, function(node) {
+                node.parentNode.removeChild(node);
+            });
+        }
+    </script>
+
+</body>
+
+</html>
